@@ -1,0 +1,124 @@
+#include <sstream>
+#include <iostream>
+#include <stdio.h>
+#include <math.h>
+//#include '../../moos-ivp/include/ivp/MBUtils.h'
+#include <list>
+#include <string>
+#include <cstdlib>
+
+using namespace std;
+
+void listStringsExample()
+{
+  list<string> my_strings;
+  my_strings.push_back("apples");
+  my_strings.push_back("watermelons");
+  my_strings.push_back("pears");
+  my_strings.push_back("blackberry");  
+
+  list<string>::iterator p;
+
+  //Print out original list
+  for(p=my_strings.begin(); p!=my_strings.end(); p++){
+    string str = *p;
+    cout << "Fruit name: " << str << endl;
+  }
+
+  //Deliberate space  
+  cout << " " << endl;
+  cout << " " << endl;
+  cout << " " << endl;
+
+  //Testing the modification of a list of strings, truncating strings longer than 7, "resetting" p
+  for(p=my_strings.begin(); p!=my_strings.end();p++){
+    string& str = *p;
+    if(str.length() > 7){
+      cout << "Long fruit name (BEFORE): " << str << endl;
+      str = str.substr(0,7);
+      cout << "Long fruit name (AFTER): " << str << endl;
+    }
+  }
+  
+  //Deliberate space
+  cout << " " << endl;
+  cout << " " << endl;
+  cout << " " << endl;
+
+  //Remove any strings longer than 5 characters long
+  for(p=my_strings.begin(); p!=my_strings.end();){
+    string str = *p;
+    if(str.length() > 5){
+      cout << "Long fruit name: " << str << endl;
+      p = my_strings.erase(p);
+    }else
+      ++p;
+  }
+
+  cout << "List size: " << my_strings.size() << endl;
+}
+
+void stringBiteExample(string inString)
+{
+  //string left = biteString(inString, '=');
+  cout << "Left: [" << left << "]" << endl;
+  cout << "orig: [" << inString << "]" << endl;
+}
+
+
+void primeFactors(int n)
+{
+  //Print the number of 2s that divide n
+  while (n%2 == 0){
+    printf("%u ", 2);
+    n = n/2;
+  }
+
+  // n must be odd at this point. So we can skip one element (Note i = i + 2)
+  for (int i = 3; i <= sqrt(n); i = i+2){
+    // While i divides n, print i and divide n
+    while( n%i == 0){
+      printf("%u ", i);
+      n = n/i;
+    }
+  }
+
+  /* This condition is to handle the case when n is a prime number
+     greater than 2 */
+  if (n > 2)
+    printf("%u ", n);
+
+  // Move cursor to the next line
+  printf("\n");
+}
+
+
+int main()
+{
+  int n = 13;
+  string orig = "temperature = 98";
+  //  primeFactors(n);
+  cout << "Output: " << (n%2) << endl;
+  //stringBiteExample(orig);
+  //  listStringsExample();
+  //  return 0;
+  
+  /*   
+   //Create the biggest unsigned long int possible
+   string testString = "= 200";   
+   // Example used to convert an unsigned long int to a string
+   //Convert it to a string
+   unsigned long int inVal = strtoul(testString.c_str(), NULL, 0);;
+   //   inVal++;
+   //   ss <<<< ival;
+   //   string str = ss.str();
+   
+   //Confirm it works
+   cout << "Value: " << inVal << endl;
+   cout << testString << endl;
+   
+  */
+
+   return 0;
+}
+
